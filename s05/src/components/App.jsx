@@ -1,6 +1,7 @@
 import "./App.css";
 import Header from "./Header";
 import Presentation from "./Presentation";
+import Voiture from "./Voiture";
 
 function App() {
   return (
@@ -8,6 +9,8 @@ function App() {
       <Header />
       <br />
       <Presentation nom={"Rami"} prenom={"Ahmed"} />
+
+      <Voiture />
     </div>
   );
 }
