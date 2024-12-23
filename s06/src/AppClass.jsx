@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-export default class App extends Component {
+export default class AppClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,24 +13,27 @@ export default class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (this.state.nom.length > 3 && this.state.prenom.length) {
-      setInfos(`Nom : ${this.state.nom}, Prenom: ${this.state.prenom}`);
-
-      setErrMsg("");
+    if (this.state.nom.length >= 3 && this.state.prenom.length >= 3) {
+      this.setState({
+        infos: `Nom : ${this.state.nom} - Prenom: ${this.state.prenom}`,
+        nom: "",
+        prenom: "",
+      });
+      this.setState({ errMsg: "" });
     } else {
-      setErrMsg("field is empty");
-      setInfos("");
+      this.setState({ errMsg: "field is empty" });
+      this.setState({ infos: "" });
     }
   }
   render() {
     return (
       <div>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <label>Prenom</label>
           <input
             type="text"
-            value={prenom}
-            onChange={(e) => setPrenom(e.target.value)}
+            value={this.state.prenom}
+            onChange={(e) => this.setState({ prenom: e.target.value })}
           />
 
           <br />
@@ -38,15 +41,17 @@ export default class App extends Component {
           <label>Nom</label>
           <input
             type="text"
-            value={nom}
-            onChange={(e) => setNom(e.target.value)}
+            value={this.state.nom}
+            onChange={(e) => this.setState({ nom: e.target.value })}
           />
 
           <br />
           <br />
           <button type="submit">Afficher</button>
-          <p>{infos}</p>
-          {errMsg && <p style={{ color: "red" }}>{errMsg}</p>}
+          <p>{this.state.infos}</p>
+          {this.state.errMsg && (
+            <p style={{ color: "red" }}>{this.state.errMsg}</p>
+          )}
         </form>
       </div>
     );
