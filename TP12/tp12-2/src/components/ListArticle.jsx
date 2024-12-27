@@ -11,11 +11,11 @@ export default function ListArticle() {
         ...articles,
         { id: id, designation: designation, prix: prix },
       ]);
-    }
 
-    setId("");
-    setDesignation("");
-    setPrix("");
+      setId("");
+      setDesignation("");
+      setPrix("");
+    }
   }
 
   return (
