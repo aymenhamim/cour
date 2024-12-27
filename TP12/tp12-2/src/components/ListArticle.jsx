@@ -12,6 +12,9 @@ export default function ListArticle() {
 
   const [articles, setArticles] = useState(initialState);
 
+  let prixTotal = articles.reduce((acc, cur) => acc + +cur.prix, 0);
+  let prixMoyen = prixTotal / articles.length;
+
   function initialiser() {
     setId("");
     setDesignation("");
@@ -114,36 +117,52 @@ export default function ListArticle() {
             )}
           </div>
         </div>
-        <div>
-          <h3>liste Articles</h3>
-          <ul className="articles">
-            {articles.map((a, i) => (
-              <>
-                <li key={i}>
-                  {`${a.id} | ${a.designation} | ${a.prix}`}{" "}
-                  <button
-                    onClick={() => handleRemove(a.id)}
-                    className="btnEvent delete"
-                  >
-                    <MdDeleteOutline />
-                  </button>
-                  <button
-                    onClick={() => handleEdit(a.id)}
-                    className="btnEvent update"
-                  >
-                    <FaEdit />
-                  </button>
-                  <button
-                    onClick={() => handleShow(a.id)}
-                    className="btnEvent show"
-                  >
-                    <CiRead />
-                  </button>
-                </li>
-              </>
-            ))}
-          </ul>
-        </div>
+        {articles.length > 0 && (
+          <div>
+            <h3>liste Articles</h3>
+            <ul className="articles">
+              {articles.map((a, i) => (
+                <>
+                  <li key={i}>
+                    {`${a.id} | ${a.designation} | ${a.prix}`}{" "}
+                    <div className="buttons">
+                      <button
+                        onClick={() => handleRemove(a.id)}
+                        className="btnEvent delete"
+                      >
+                        <MdDeleteOutline />
+                      </button>
+                      <button
+                        onClick={() => handleEdit(a.id)}
+                        className="btnEvent update"
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        onClick={() => handleShow(a.id)}
+                        className="btnEvent show"
+                      >
+                        <CiRead />
+                      </button>
+                    </div>
+                  </li>
+                </>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {articles.length > 0 && (
+          <>
+            <h2>Statistiques</h2>
+            <p>
+              prix moyen: <b>{prixMoyen}$</b>
+            </p>
+            <p>
+              prix total: <b>{prixTotal}$</b>
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

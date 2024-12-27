@@ -82,4 +82,18 @@ body {
 }
 
 .articles {
+  background-color: #dbdbdb;
+  border-radius: 7px;
+  align-items: center;
+  padding: 10px;
+
+  & li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    margin-bottom: 5px;
+    background-color: white;
+    border-radius: 6px;
+  }
 }
