@@ -6,6 +6,9 @@ function Div() {
 
   useEffect(() => {
     Field.current.addEventListener("mousemove", handleMouseMove);
+    Field.current.addEventListener("onmouseleave", () =>
+      console.log("klfgshgf")
+    );
     return () => {
       Field.current.removeEventListener("mousemove", handleMouseMove);
     };

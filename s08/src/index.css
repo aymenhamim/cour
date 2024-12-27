@@ -23,7 +23,7 @@ body {
   }
   .serchBar {
     background-color: rgba(17, 109, 17, 0.481);
-    padding: 2rem 10px;
+    padding: 2rem 20px;
     border: 1px solid rgb(78, 78, 78);
     border-radius: 10px;
   }

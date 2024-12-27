@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+import { MdDeleteOutline } from "react-icons/md";
+import { CiRead } from "react-icons/ci";
+import { FaEdit } from "react-icons/fa";
+
 export default function ListArticle() {
   const [id, setId] = useState(0);
   const [designation, setDesignation] = useState("");
   const [prix, setPrix] = useState(0);
-  const [articles, setArticles] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const initialState = [{ id: 1, designation: "article01", prix: 100 }];
 
+  const [articles, setArticles] = useState(initialState);
+
+  function initialiser() {
+    setId("");
+    setDesignation("");
+    setPrix("");
+  }
   function handlerAddArticle() {
     if (id && designation && prix) {
       setArticles([
@@ -12,10 +24,51 @@ export default function ListArticle() {
         { id: id, designation: designation, prix: prix },
       ]);
 
-      setId("");
-      setDesignation("");
-      setPrix("");
+      initialiser();
     }
+  }
+
+  function handleRemove(id) {
+    setArticles(articles.filter((a) => a.id != id));
+  }
+  function handleShow(id) {
+    const [article] = articles.filter((a) => a.id === id);
+    alert(
+      `id: ${article.id} - designation: ${article.designation} - prix: ${article.prix}`
+    );
+  }
+
+  function handleEdit(id) {
+    const [article] = articles.filter((a) => a.id === id);
+    setId(article.id);
+    setPrix(article.prix);
+    setDesignation(article.designation);
+    setIsEdit(true);
+
+    // console.log(article);
+
+    // articles.map();
+  }
+
+  function handleModifier() {
+    setArticles((prev) =>
+      prev.map((a) =>
+        a.id === id
+          ? {
+              id: a.id,
+              designation,
+              prix,
+            }
+          : a
+      )
+    );
+    initialiser();
+    setIsEdit(false);
+  }
+
+  function handleCancel() {
+    initialiser();
+    setIsEdit(false);
   }
 
   return (
@@ -51,14 +104,43 @@ export default function ListArticle() {
             />
           </div>
           <div className="button">
-            <input type="button" value="Ajouter" onClick={handlerAddArticle} />
+            {isEdit ? (
+              <>
+                <button onClick={handleModifier}>Modifier</button>
+                <button onClick={handleCancel}>cancel</button>
+              </>
+            ) : (
+              <button onClick={handlerAddArticle}>ajouter</button>
+            )}
           </div>
         </div>
         <div>
           <h3>liste Articles</h3>
-          <ul>
+          <ul className="articles">
             {articles.map((a, i) => (
-              <li key={i}>{`${a.id} | ${a.designation} | ${a.prix}`}</li>
+              <>
+                <li key={i}>
+                  {`${a.id} | ${a.designation} | ${a.prix}`}{" "}
+                  <button
+                    onClick={() => handleRemove(a.id)}
+                    className="btnEvent delete"
+                  >
+                    <MdDeleteOutline />
+                  </button>
+                  <button
+                    onClick={() => handleEdit(a.id)}
+                    className="btnEvent update"
+                  >
+                    <FaEdit />
+                  </button>
+                  <button
+                    onClick={() => handleShow(a.id)}
+                    className="btnEvent show"
+                  >
+                    <CiRead />
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
         </div>

@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -46,40 +42,4 @@ body {
 .container list {
   padding: 16px;
   text-align: center;
-}
-
-.inputs {
-  div {
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-}
-
-.btnEvent {
-  color: white;
-  border: 0;
-  border-radius: 8px;
-  box-sizing: border-box;
-  padding: 5px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.delete {
-  background-color: rgb(255, 83, 83);
-}
-.update {
-  background-color: orange;
-}
-
-.show {
-  background-color: rgb(46, 131, 46);
-}
-
-.articles {
 }
