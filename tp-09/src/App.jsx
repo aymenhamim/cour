@@ -16,9 +16,9 @@ function App() {
   }
 
   return (
-    <div className="bg-stone-50 text-stone-50 min-h-full">
-      <form onSubmit={HandleSubmit}>
-        <h2 className="bg-stone-900">fgsgf</h2>
+    <div className=" min-h-[100dvh] bg-zinc-100">
+      <form onSubmit={HandleSubmit} className="bg-zinc-900">
+        <h2 className="">fgsgf</h2>
         <label htmlFor="username">UserName</label>
         <input
           type="text"
