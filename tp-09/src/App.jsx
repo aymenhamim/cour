@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 function App() {
   const [userName, setUserName] = useState('');
@@ -55,16 +56,23 @@ function App() {
               />
             </div>
 
-            <button
+            <motion.button
+              initial={{ scale: 0, opacity: 0, width: 700 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileInView={{ opacity: 1, width: 'fit-content' }}
               type="submit"
               className="transition-all] mx-auto my-8 bg-zinc-900 p-3 text-sm text-zinc-50 duration-300 hover:bg-zinc-700"
             >
               Se Connecter
-            </button>
+            </motion.button>
           </>
         )}
         {errMsg && (
-          <p className="rounded-r-md border-l-4 border-red-700 bg-red-200 px-3 py-4 text-red-700">
+          <p
+            className="rounded-r-md border-l-4 border-red-700 bg-red-200 px-3 py-4 text-red-700"
+            exit={{ opacity: 0 }}
+          >
             {errMsg}
           </p>
         )}
