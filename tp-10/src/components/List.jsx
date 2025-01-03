@@ -4,7 +4,7 @@ function List({ articles }) {
   return (
     <ul>
       {articles.map((a, i) => (
-        <ListItem a={a} key={i} />
+        <ListItem article={a} key={i} />
       ))}
     </ul>
   );
