@@ -9,15 +9,20 @@ function Form() {
     'flex w-[300px] rounded-md border border-stone-400 px-4 py-2 outline-0 transition-all duration-200 hover:bg-stone-100 focus:ring-4 focus:ring-stone-400';
 
   function handleSubmit(e) {
-    if (!id || !designation || !price) {
-      alert('test');
-    }
-
     e.preventDefault();
+
+    if (!id || !designation || !price) {
+      alert('error');
+    } else {
+      alert(`${id} - ${designation} - ${price}`);
+      setDesignation('');
+      setId(0);
+      setPrice(0);
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="mb-5">
       <div className={divStyle}>
         <label htmlFor="id" className="font-bold">
           ID
