@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiRead } from "react-icons/ci";
 import { FaEdit } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function ListArticle() {
   const [id, setId] = useState(0);
@@ -113,7 +114,17 @@ export default function ListArticle() {
                 <button onClick={handleCancel}>cancel</button>
               </>
             ) : (
-              <button onClick={handlerAddArticle}>ajouter</button>
+              <motion.button
+                onClick={handlerAddArticle}
+                animate={{
+                  backgroundColor: "lightgreen",
+                  color: "white",
+                  scale: 2,
+                  rotate: 1800,
+                }}
+              >
+                ajouter
+              </motion.button>
             )}
           </div>
         </div>
