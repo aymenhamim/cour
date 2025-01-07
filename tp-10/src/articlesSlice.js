@@ -1,12 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-    //     {
-    //     id: 0,
-    //     designation: "",
-    //     price: 0
-    // }
-]
+const initialState = { isEdit: false, articles: [] }
 const articleSlice = createSlice({
     name: 'article',
     initialState,
@@ -16,7 +10,14 @@ const articleSlice = createSlice({
                 return { payload: { id, designation, price } }
             },
             reducer(state, action) {
-                state.push({
+                const ele = state.articles.find(a => a.id === action.payload.id);
+                if (ele) {
+                    alert('This id Already Exists')
+                    return state
+                }
+                console.log(ele)
+
+                state.articles.push({
                     id: action.payload.id,
                     designation: action.payload.designation,
                     price: action.payload.price
@@ -25,25 +26,18 @@ const articleSlice = createSlice({
             }
         },
         deleteArticle(state, action) {
-
-            const index = state.findIndex(s => s.id === action.payload);
-            if (index !== -1) state.splice(index, 1);
+            const index = state.articles.findIndex(s => s.id === action.payload);
+            if (index !== -1) state.articles.splice(index, 1);
         },
-        editArticle: {
-            prepare(id, designation, price) {
-                return { payload: { id, designation, price } }
-            },
-            reducer(state, action) {
-                const index = state.findIndex(s => s.id === action.payload);
-                if (index !== -1) state[index] = {
-                    id: action.payload.id,
-                    designation: action.payload.designation,
-                    price: action.payload.price
-                };
-            }
+        editArticle(state, action) {
+            const index = state.articles.findIndex(s => s.id === action.payload);
+
+            if (index !== -1) state.articles[index] = {
+                // id: action.payload.id,
+                designation: action.payload.designation,
+                price: action.payload.price
+            };
         }
-
-
     }
 
 
@@ -51,4 +45,4 @@ const articleSlice = createSlice({
 
 export default articleSlice.reducer
 
-export const { addArticle, deleteArticle } = articleSlice.actions
+export const { addArticle, deleteArticle, editArticle } = articleSlice.actions

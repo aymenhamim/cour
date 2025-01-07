@@ -6,11 +6,20 @@ const divStyle = 'mb-7 flex items-center justify-between';
 const inputStyle =
   'flex w-[300px] rounded-md border border-stone-400 px-4 py-2 outline-0 transition-all duration-200 hover:bg-stone-100 focus:ring-4 focus:ring-stone-400';
 
+const buttonStyle =
+  'rounded-md border-0 bg-stone-900 px-5 py-2 text-stone-50 outline-none transition-all duration-200 hover:bg-stone-700 focus:ring-4 focus:ring-stone-300';
+
 function Form() {
   const dispatch = useDispatch();
   const [id, setId] = useState(0);
   const [designation, setDesignation] = useState('');
   const [price, setPrice] = useState(0);
+
+  const [update, setUpdate] = useState({ isEdit: false, id: 0 });
+
+  function handleUpdate() {
+    useDispatch(handleUpdate(1));
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -67,12 +76,13 @@ function Form() {
         />
       </div>
       <div className="flex justify-end">
-        <button
-          className="rounded-md border-0 bg-stone-900 px-5 py-2 text-stone-50 outline-none transition-all duration-200 hover:bg-stone-700 focus:ring-4 focus:ring-stone-300"
-          type="submit"
-        >
-          Ajouter
-        </button>
+        {update.isEdit ? (
+          <button className={buttonStyle}>Update</button>
+        ) : (
+          <button className={buttonStyle} type="submit">
+            Ajouter
+          </button>
+        )}
       </div>
     </form>
   );

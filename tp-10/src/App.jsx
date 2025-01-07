@@ -4,7 +4,7 @@ import Header from './components/Header';
 import List from './components/List';
 
 function App() {
-  const articles = useSelector(store => store.article);
+  const articles = useSelector(store => store.article.articles);
 
   return (
     <div className="flex min-h-dvh min-w-full items-center justify-center bg-stone-950 pt-20">
